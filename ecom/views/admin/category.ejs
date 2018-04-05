@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ADMIN | CategoryList</title>
+  
+  <%- include lib/linkmenu.ejs %>
+
+</head>
+<script>
+
+var Screenfields = [];
+var tblclick = '';
+// var cid = "";
+</script>
+<body>
+  
+    <%- include /lib/mymenu.ejs %>
+
+  <div id="content" class="content">
+      <!-- begin breadcrumb -->
+      <ol class="breadcrumb pull-right">
+        <li><a href="javascript:;">Admin</a></li>
+        <li class="active">Category</li>
+        <!-- <li class="active">Managed Tables</li> -->
+      </ol>
+      <!-- end breadcrumb -->
+      <!-- begin page-header -->
+      <h1 class="page-header">Managed Tables <small>header small text goes here...</small></h1>
+      <!-- end page-header -->
+      
+      <!-- begin row -->
+      <div class="row">
+          <!-- begin col-12 -->
+          <div class="col-md-12">
+              <!-- begin panel -->
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="#modal-dialog1" class="btn btn-icon btn-circle btn-success" data-toggle="modal"><i class="fa fa-plus fa-1x"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">CATEGORY LIST - ADMIN</h4>
+                        </div>
+
+                        <div class="panel-body">
+                            <table id="data-table" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                              			<th>CATEGORYID</th>
+                              			<th>CATEGORYNAME</th>
+                              			<th>P.C.ID</th>
+                              			<th>PARENTCATNAME</th>
+                              			<th>CREATIONDATE</th>
+                              			<th>UPDATIONDATE</th>
+                              			<!-- <th>Edit</th> -->
+                              			<!-- <th>Delete</th> -->
+                            		  </tr>
+                            	</thead>
+                            	<tbody>
+                            		<% for(var i = 0; i < data.length; i++){%>
+                            		<tr id="<%=data[i].categoryid%>" >
+                            			<td><%= data[i].categoryid %></td>
+                            			<td><%= data[i].categoryname %></td>
+                            			<td><%= data[i].parentcategoryid %></td>
+                            			<td><%= data[i].parentcatname %></td>
+                            			<td><%= data[i].creationdate %></td>
+                            			<td><%= data[i].updationdate %></td>
+                            			<!-- <td><a href="/admin/category/updatecate?categoryid=<%= data[i].categoryid%>">Edit</a></td> -->
+                            			<!-- <td><a href="/admin/category/delete?categoryid=<%= data[i].categoryid%>">Delete</a></td> -->
+                            			<% } %>
+                            	</tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+                <!-- end col-12 -->
+            </div>
+            <!-- end row -->
+    </div>
+    <!-- end #content -->
+       <!-- begin theme-panel -->
+      <%- include lib/thememenu.ejs%>
+        <!-- end theme-panel -->
+
+    <!-- begin scroll to top btn -->
+      <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+      <!-- end scroll to top btn -->
+    </div>
+    <!-- end page container -->
+
+<!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" >Open Modal</button> -->
+
+<!-- Modal -->
+<div id="modal-dialog" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Category</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="row">	
+            <div class="col-md-12">
+          		<form action="/admin/category/updatecatdata" name="formname" id="form2" method="post" >
+
+			      	<%- include updatecat.ejs %>
+
+	      	</form>
+          </div>  
+        </div>
+	</div>
+
+     <div class="modal-footer">
+    	<a href="javascript:onDelete();" id="btndelete" class="btn btn-sm btn-danger">Delete</a>
+    	<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Close</a>
+    	<a href="javascript:addProject();" type="submit" class="btn btn-sm btn-success">Add</a>
+    </div>
+	</div>
+	</div>
+</div>
+
+<div id="modal-dialog1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Category</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+
+		          <form action="/admin/category/addcatdata" name="formname" id="formf" method="post" class="form-inline">
+			      	
+              <%- include addcat.ejs %>
+			      	
+              </form>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="javascript:onValidate();" class="btn btn-success">Add</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <%- include lib/scriptmenu.ejs%>
+ 
+<script>
+
+	$(document).ready(function() {
+    	var table = $('#data-table').DataTable();
+
+     $('#data-table tbody').on('click', 'tr', function() {
+                    var id = table.row(this).id();
+                       var data = table.row(this).data();
+                       // alert(data);
+                       
+                    cid = id;
+                    // alert(data[2]);
+                       $("input[name='cid']").val(data[0]);
+                       $("input[name='cname']").val(data[1]);
+                       // $("input[name='pid']").val(data[2]);
+                       $("select[name='pid'] option[value='" + data[2] + "']").attr('selected', 'selected');
+                     // alert('22'+cid);
+                       if(cid){
+                           $('#modal-dialog').modal('show');
+                          }
+                          // alert('33'+cid);
+                });
+		} );
+  function onValidate() {
+                // alert("funcntion called");
+                    var form = $('#formf');
+                    // alert(JSON.stringify(form));
+                    //form.parsley().validate();
+                    if (form) {
+                                       // alert('valid');
+                        var formdata = $('#formf').serializeArray();
+                        //structure json
+                         alert('formdata'+JSON.stringify(formdata));
+                        var data = formdata.reduce(function(a, x) {
+                            a[x.name] = x.value;
+                            return a;
+                        }, {});
+                        // alert(data);
+                        Screenfields.push(data);
+                        //                alert("screenfields"+JSON.stringify(Screenfields))
+                       // alert(cid); 
+                        var url = "/admin/category/addcatdata";
+                          
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            timeout: 6000,
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                            formdata: JSON.stringify(Screenfields)
+                            }),
+                            success: function(data) {
+                              alert(JSON.stringify(data));
+                                var fdata = JSON.parse(JSON.stringify(data));
+                                if (fdata.status == '0') {
+                              alert(JSON.stringify(data));
+                                    Screenfields = [];
+                                    alert("Data saved successfully");
+                                    $('#formf').trigger("reset");
+                                    $('#modal-dialog').modal('hide');
+                                    window.location.reload();
+                                } else {
+                                    // alert(fdata.status_msg);
+                                    alert("Please select the proper details");
+                                    Screenfields = [];
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                //                        alert(status+" "+error.Message+" "+xhr.responseText);
+                                Screenfields = [];
+                            }
+                        });
+                    } else {
+                        // alert('Form not valid');
+                    }
+                };
+
+
+  function onDelete() {
+                    // alert('ok');
+                      
+                      alert(cid);
+                          $.ajax({
+                            type: "POST",
+                            url: "/admin/category/delete",
+                            timeout: 6000,
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                cid: cid
+                            }),
+                            success: function(data) {
+                              alert('2');
+                              var fdata = JSON.parse(JSON.stringify(data));
+                              if (fdata.status == '0') {
+                               
+                                alert("Task deleted");
+                                $('#modal-dialog').modal('hide');
+                                location.reload();
+                            } else {
+                                alert(formdata.status_msg);
+                            }
+                           },error:function(xhr, status,error){
+                            alert('error json');
+                            } 
+                         });
+                      };
+
+
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+	function addProject(){
+		$('#form2').submit();
+    alert();
+	}
+
+</script>
+<script>
+
+ $(document).ready(function(){
+
+    	 App.init();
+       DashboardV2.init();
+
+});
+</script>
+<script>
+    
+    var str = '<%- adminname%>';
+    var str1 = str.charAt(0).toUpperCase() + str.slice(1);
+    document.getElementById('p2').innerHTML = str1;
+    document.getElementById('info').innerHTML = str1;
+  </script>
+</body>
+</html>

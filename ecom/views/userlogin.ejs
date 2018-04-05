@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1068258524108-79hm4ijj9dh4dc8ha5ls7e5vhpk1revh.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="../assets1/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../assets1/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../assets1/login/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../assets1/login/css/main.css">
+<!--===============================================================================================-->
+</head>
+<style>
+.data{
+      display: none;
+    }
+#regs a{
+	color: #4A90E2;
+	font-family: arial;
+}
+#regs{
+	color: black;
+	font-family: arial;
+}
+div.transbox {
+    margin: 30px;
+    background-color: rgb(100 200 50);
+    /*border: 1px solid blue;*/
+    box-shadow: 0 2px 20px rgba(0,0,0,.19), 0 4px 6px rgba(0,0,0,.23);
+    border-radius: 2px;
+    opacity: 0.7;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
+.label-input100{
+	font-size: 21px;
+	color: navy;
+}
+    </style>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('assets1/img/'); background-color: #F0EFF0;">
+			<a href="/">
+			<img src="
+			/images/logo.png" alt=""></a>
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54 transbox">
+				<form action="/userlogindata" role="form" class="login100-form validate-form" name="formname" method="post" onsubmit="return validation();">
+<!-- 	<form action="/userlogindata"  role="form" data-toggle="validator" name="formname" method="post" onsubmit="return validation();" style="border: 1px solid lightgrey; padding: 10px 15px; border-radius: 5px; margin-top: 22px;" >
+ -->					<span class="login100-form-title p-b-49">
+						Login
+					</span>
+					<!-- <img id="pic" class="img-circle" alt="Profile Image" height="100px" width="100px"> -->
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span class="label-input100">Email or mobile phone number</span>
+						<input class="input100" type="text" name="emailid" placeholder="Please enter your Email Address">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" id="pass" name="pass" placeholder="Type your password">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
+					<div class="text-right p-t-8 p-b-31">
+						<a href="/userlogin/forgetpass">
+							Forgot password?
+						</a>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<input id="button" type="submit" value="Login" class="btn login100-form-btn">
+						</div>
+
+					</div><br>
+					<h2 style="color: red;" align="center"><%= msg %></h2>
+					<p class="text-center" id="regs">Not a Member Yet? <a href="/register">Register Now</a></p>
+
+					<div class="txt1 text-center p-t-54 p-b-20">
+						<span>
+							Or Sign Up Using
+						</span>
+					</div>
+      <!-- <a href="#" onclick="signOut();" class="btn btn-danger">Sign out</a> -->
+
+					<div class="flex-c-m">
+						<!-- <a  scope="public_profile,email" onlogin="checkLoginState();" class="login100-social-item bg1">
+							<i class="fa fa-facebook"></i>
+						</a> -->
+					<!-- 
+						<div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="false" data-use-continue-as="true"></div> -->
+						<!-- <div class="fb-login-button" data-max-rows="1" data-size="small" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div> -->
+						<div id="status">
+						</div>
+
+						<!-- <a href="#" class="login100-social-item bg2">
+							<i class="fa fa-twitter"></i>
+						</a>
+
+						<a href="#" class="login100-social-item bg3">
+							<i class="fa fa-google"></i>
+							
+						</a> -->
+    					<div id="sign" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/bootstrap/js/popper.js"></script>
+	<script src="../assets1/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../assets1/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../assets1/login/js/main.js"></script>
+	<script>
+	
+  //       // Useful data for your client-side scripts:
+  //       alert("ss");
+
+  //       $(".g-signin2").css("display", "none");
+  //       $(".data").css("display", "block");
+  //       $("#pic").attr('src', profile.getImageUrl());
+  //       var emails = $("#email").text(profile.getEmail());
+  //       var profilena = $("#name").text(profile.getName());
+		// };
+
+    
+		function onSignIn(googleUser) {
+                // alert("funcntion called");
+        var profile = googleUser.getBasicProfile();
+                  
+	    // var id_token = googleUser.getAuthResponse().id_token;
+                    // alert(JSON.stringify(profile));
+                    //form.parsley().validate();
+                    if (profile) {
+	                  
+                      var url = "/userlogindata";
+              	        var fdata = JSON.parse(JSON.stringify(profile));
+ 					   	    	// console.log("ID Token: " + id_token);
+                      // alert("data"+JSON.stringify(id_token));
+	                    // alert("data"+JSON.stringify(fdata));
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            timeout: 6000,
+                            contentType: 'application/json',
+                            data: JSON.stringify(fdata),
+                            success: function(data) {
+                               // alert("sssss"+JSON.stringify(data));
+                            	var fdata = JSON.parse(JSON.stringify(data));
+                                if (fdata.status == '0') {
+                              // alert(JSON.stringify(data));
+                                    // Screenfields = [];
+                                    alert("Data saved successfully");
+                                    window.location.href = "/";
+                                } else {
+                                    // alert(fdata.status_msg);
+                                    alert("Please select the proper details");
+                                    Screenfields = [];
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                //                        alert(status+" "+error.Message+" "+xhr.responseText);
+                                Screenfields = [];
+                            }
+                        });
+                    } else {
+                        // alert('Form not valid');
+                    }
+                };
+	</script>
+
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '183122292489725',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.12'
+    });
+      
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function statusChangeCallback(response){
+    if (response.status == 'connected') {
+        console.log("Logged in and autheticated");
+    }else{
+      console.log('Not autheticated');
+    }
+  }
+  
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+      if (response.status === 'connected') {
+    var accessToken = response.authResponse.accessToken;
+  } 
+    });
+  }
+
+//   FB.getLoginStatus(function(response) {
+//   if (response.status === 'connected') {
+//     var accessToken = response.authResponse.accessToken;
+//   } 
+// } );
+</script>
+</body>
+</html>

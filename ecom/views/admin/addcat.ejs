@@ -1,0 +1,30 @@
+<style>
+	.modal-body label{
+		margin-top:11px;
+	}
+</style>	
+
+<div class="col-md-12">	
+	<div class="form-group">	
+			<div class="col-md-3">
+			<label>Category Name :</label>
+			</div>
+			<div class="col-md-9">
+			<input type="text" name="catname" id="catname" class="form-control">
+			</div>
+
+			<div class="col-md-3">
+			<label>ParentCatName :</label>
+			</div>
+			<div class="col-md-9">
+			<select name="parentid" id="pid" class="form-control" >
+				<option value="0">Select ParentCategory</option>
+				<% for(var i=0; i < data.length; i++){%>
+				<option value="<%=data[i].categoryid%>">
+					<%=data[i].categoryname%>
+				</option>
+				<% } %>
+			</select>
+			</div>
+	</div>
+	</div>

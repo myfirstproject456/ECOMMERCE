@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Registration form</title>
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/validation.css">
+</head>
+<style>
+	form{
+		margin-top: 100px;
+	}
+	.primary-btn {
+    color: #FFF;
+    background-color: #27A7D4;
+    border: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: hidden;
+    outline: 0;
+    padding: 16px 130px;
+    
+}
+.submit-box{
+	margin-top: 10px;
+	text-align: center;
+}
+#message,#uname1,#email1,#mob1{
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p{
+	margin-top: 10px;
+    padding: 10px 35px;
+    font-size: 15px;
+}
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+.invalid {
+    color: red;
+}
+.invalid:before {
+    position: relative;
+    left: -30px;
+    content: "✖";
+}
+</style>
+<body>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4">
+		<form action="/registrationdata" method="post">
+			<div class="panel-group">
+				<div class="panel panel-primary">
+				<div class="panel-heading bg-danger text-center">Register Here</div>
+				<p align="center">Aready Registered? <a href="/userlogin">Login</a> here</p>
+			</div>
+			</div>
+			<label for="uname" >Username:</label>
+			<input type="text" name="uname" class="form-control" placeholder="Enter Your Username With Lastname" id="uname" required><br>
+			<p id="uname1" class="invalid">Username is required</p>
+			<label for="email">Emailid:</label>
+			<input type="email" name="email" class="form-control" placeholder="Enter Your Emailid" id="email" required>
+			<p id="email1" class="invalid">Emailid is required</p>
+			<br>
+			<label for="mob">MobileNo:</label>
+			<input type="number" name="mob" class="form-control" placeholder="Enter Your MobileNo" id="mob" required=""><br>
+			<p id="mob1" class="invalid">Mobile no must be contain 10 Digits</p>
+			<select style="width: 249px;" class="form-control hidden" name="status">
+					  <option value="confirm">Confirm</option>
+					  <option value="Unconfirm">Unconfirmed</option>
+				</select> 
+			<label for="pass">Password:</label>
+			<input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  type="password" name="pass" class="form-control" placeholder="Enter Your Password" id="pass" required><br>
+			<input type="checkbox" onclick="showPass()" value="">Show Password <br>
+			<div class="submit-box">
+			<input type="submit" class="primary-btn " value="Register" >
+			</div><br>
+		</form>
+			 
+		</div>
+		
+		<div class="col-sm-4">
+		<div id="message">
+	  	  <h3>Password must contain the following:</h3>
+		  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+		  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+		  <p id="number" class="invalid">A <b>number</b></p>
+		  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+		</div>		
+	</div>
+	</div>
+	<script src="../assets1/js/formvalidation.js"></script>
+	
+</body>
+</html>

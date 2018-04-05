@@ -1,0 +1,72 @@
+         <div class="form-group">
+                  
+        			    <div class="col-md-3">
+        					 <label for="">Title : </label>
+        			  	</div>
+        			    <div class="col-md-9">
+        					 <input type="text" class="form-control" id="tit" name="tit" required="">
+        				  </div>
+
+        			    <div class="col-md-3">
+        					  <label for="">Tags/Keywords : </label>
+        				  </div>
+        			    <div class="col-md-9">
+        					   <input type="text" class="form-control" id="tags" name="tags" required="">
+        				  </div>
+        		
+        			    <div class="col-md-3">
+        					   <label for="">Description : </label>
+        				  </div>
+        			    <div class="col-md-9">
+        					   <textarea id="Discription" class="form-control" cols = "21" rows="3" name="dis" required=""></textarea>
+        				  </div>
+        			    
+        			    <div class="col-md-3">
+          					<label for="">Category: </label>
+          				</div>
+        			    <div class="col-md-9">
+        					   <select name="c1name" id="c1name" class="form-control selectpicker col-md-7" data-size="10" data-live-search="true" data-style="btn-white" required="">
+
+          						<option value="">Select Category</option>
+          						<% for(var i = 0; i < listCategory.length; i++) {%>
+          						<option value="<%= listCategory[i].categoryid %>"><%= listCategory[i].categoryname%></option>
+          						<% } %>
+          					 </select>
+        				  </div>
+
+        			    <div class="col-md-3">
+        					   <label for="">Sub-Category : </label>
+        				  </div>
+        			    <div class="col-md-9">
+          					 <select name="scat" id="scat" class="form-control col-md-7" data-size="10" data-live-search="true" data-style="btn-white" required="">
+          						<option value="" class = "form-control">Select Sub-Category</option>
+          					</select>
+      				    </div>
+
+        			    <div class="col-md-3">
+        					   <label for="">Price:</label>
+        				  </div>
+        			    <div class="col-md-9">
+        					   <input type="text" id="price" name="price" class="form-control">
+        				  </div>
+
+        			    <div class="col-md-3">
+        				    <label for="">Status : </label>
+        				  </div>
+        			    <div class="col-md-9">
+            				<select class="form-control" id="status" name="status" required=""> 
+                        <option value="">Select Status</option>
+                			  <option value="approved">approved</option>
+                        <option value="pending">pending</option>
+                        <option value="rejected">rejected</option>
+            				</select>
+        				  </div>
+                
+                  <div class="col-md-3">
+        			       <label >Images </label>
+                  </div>
+        				  <div class="col-md-9">
+          					 <input type="file" name="imgUploader" id="image" accept="image/*,.pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple  required=""/>
+          					<p><small>(Maximum 10 images)</small></p>
+        				  </div>
+        			</div>

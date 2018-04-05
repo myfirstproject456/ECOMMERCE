@@ -1,0 +1,64 @@
+<div class="item active" id="car2">
+                <!-- BEGIN row -->
+                <div class="row row-space-10" style="" id="clr">
+                    <!-- BEGIN col-2 -->
+                    <%
+                    if (listProduct){
+
+                    for(var i = 0; i < 6; i++) {
+                     
+                    %>
+
+                    <div class="col-md-2 col-sm-4" id="horz" style="">
+                        <!-- BEGIN item -->
+                        <div class="item item-thumbnail" id="item2">
+                            <a href="/productdetail" class="item-image">
+                                <img id="zm" src="./assets1<%= listProduct[i].img2%>" alt="" />
+                                <div class="discount">15% OFF</div>
+                            </a>
+                            <div class="item-info">
+                                <h4 class="item-title">
+                                    <a href="/product"><%= listProduct[i].title%><br />16GB</a> 
+                                    
+                                </h4>
+                                <p class="item-desc"><%= listProduct[i].discription%></p>
+                                <div class="item-price"><%= listProduct[i].price%></div>
+                                <div class="item-discount-price">$739.00</div>
+                            </div>
+                        </div>
+                        <!-- END item -->
+                    </div>
+                            <%}
+                        }
+                     else if(listProduct.length > 6){
+                        for(var i = 7; i < 11; i++) {
+                            %>
+
+                    <div class="col-md-2 col-sm-4" id="horz" style="">
+                        <!-- BEGIN item -->
+                        <div class="item item-thumbnail" id="item2">
+                            <a href="/productdetail" class="item-image">
+                                <img id="zm" src="./assets1<%= listProduct[i].img2 %>" alt="" />
+                                <div class="discount">15% OFF</div>
+                            </a>
+                            <div class="item-info">
+                                <h4 class="item-title">
+                                    <a href="/product"><%= listProduct[i].title%><br />16GB</a> 
+                                    
+                                </h4>
+                                <p class="item-desc"><%= listProduct[i].discription%></p>
+                                <div class="item-price"><%= listProduct[i].price%></div>
+                                <div class="item-discount-price">$739.00</div>
+                            </div>
+                        </div>
+                        <!-- END item -->
+                    </div>
+                            <%}
+                       
+                        
+                        }%>
+                    <!-- END col-2 -->
+                  
+                </div>
+                <!-- END row -->
+                </div>

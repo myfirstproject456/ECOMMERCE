@@ -1,0 +1,14 @@
+        <label for="">Locality Id : </label><input style="    width: 222px;" type="text" class="form-control" id="lid" readonly="readonly" name="lid">
+      
+        
+        <label for="">Locality Name : </label><input type="text" class="form-control" id="lname" name="lname">
+        
+        
+        <label for="">City Name : </label>
+        <select name="cid" id="cid" class="form-control">
+                <% data.forEach(function(list){%>
+                <option value="<%= list.cityid%>">
+                <%= list.cityname%>
+                </option>
+                <%});%>
+        </select>

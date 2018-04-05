@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <link rel="stylesheet" href="../assets/css/bootstrap.css">
+   <style>
+      * {
+      box-sizing: border-box;
+      }
+      body {
+      background-color: #f1f1f1;
+      }
+      #regForm, #tab {
+      background-color: #ffffff;
+      margin: 100px auto;
+      font-family: Raleway;
+      padding: 40px;
+      width: 70%;
+      min-width: 300px;
+      }
+      h1 {
+      text-align: center;  
+      }
+      input {
+      padding: 10px;
+      width: 100%;
+      font-size: 17px;
+      font-family: Raleway;
+      border: 1px solid #aaaaaa;
+      }
+      #pass1,#pass2{
+      padding: 10px;
+      width: 100%;
+      font-size: 17px;
+      font-family: Raleway;
+      border: 1px solid #aaaaaa;
+      }
+      #pass1,#pass2{
+      background-color: #ffdddd;
+      }
+      /* Mark input boxes that gets an error on validation: */
+      input.invalid {
+      background-color: #ffdddd;
+      }
+      /* Hide all steps by default: */
+      #tab ,#uname1,#uname2{
+      display: none;
+      }
+      #next {
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 17px;
+      font-family: Raleway;
+      cursor: pointer;
+      }
+      #next:hover {
+      opacity: 0.8;
+      }
+      #prevBtn {
+      background-color: #bbbbbb;
+      }
+      /* Make circles that indicate the steps of the form: */
+      .step {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbbbbb;
+      border: none;  
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+      }
+      .step.active {
+      opacity: 1;
+      }
+      /* Mark the steps that are finished and valid: */
+      .step.finish {
+      background-color: #4CAF50;
+      }
+      .primary-btn,#next{
+      color: #FFF;
+      background-color: #27A7D4;
+      border: none;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      overflow: hidden;
+      outline: 0;
+      padding: 16px 130px;
+      }
+      #message{
+      display:none;
+      background: #f1f1f1;
+      color: #000;
+      position: relative;
+      padding: 20px;
+      margin-left: 0px;
+      margin-top: 100px;
+
+      }
+      #message p{
+      padding: 10px 35px;
+      font-size: 15px;
+      }
+      .valid {
+      color: green;
+      margin-left: 31px;
+      }
+      .valid:before {
+      position: relative;
+      left: -35px;
+      content: "✔";
+      }
+      .invalid {
+      color: red;
+      margin-left: 31px;
+      }
+      .invalid:before {
+      position: relative;
+      left: -30px;
+      content: "✖";
+      }
+   </style>
+   <body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+          <form action="/userlogin/forgetpass/done" id="tab" method="post">
+         <p id="bothmatch" class="invalid">Both Password are matched</b></p>
+            <div class="panel-group">
+               <div class="panel panel-success">
+                  <div class="panel panel-heading" align="center">
+                     <h3>Create Your New password:</h3>
+                  </div>
+                  <br>
+                  <p align="center">Aready Registered? <a href="/userlogin">Login</a> here</p>
+               </div>
+            </div>
+            <h3><strong>Write Your password:</strong></h3>
+            <input type="hidden" id="id" type="text" name="fid" value="">
+            <p>
+              <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  type="password" name="pass"  type="password" id="pass1" placeholder="New Password..." name="pass1" required /><br></p>
+            <p><input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="pass2" type="password" placeholder="Confirmed New Password..." name="pass2"  required onchange="checkData()" /></p>
+              <input type="checkbox" class="form-control" onclick="showPass()" value="">
+           
+         <div style="overflow:auto; margin-top: 2px">
+            <div style="float:;">
+              <input type="submit" class="btn primary-btn" onclick="return checkData();" />
+                <!-- <button class="primary-btn" type="submit"  value="Submit">Submit</button> -->
+
+            </div>
+         </div>
+
+      </form>
+    </div>
+    <div class="col-sm-4">
+      <div id="message">
+         <h3>Password must contain the following:</h3>
+         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+         <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+         <p id="number" class="invalid">A <b>number</b></p>
+         <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+      <form id="regForm" action="" method="post">
+         <div class="panel-group">
+            <div class="panel panel-success">
+               <div class="panel panel-heading" align="center">
+                  <h3>Forget Password:</h3>
+               </div>
+               <br>
+               <p align="center">Aready Registered? <a href="/userlogin">Login</a> here</p>
+            </div>
+         </div>
+         <!-- One "tab" for each step in the form: -->
+         <h3><strong>Your UserName for Security Purpose :  </strong></h3>
+         <p><input id="fname" onkeyup="myFunction()" style="border-left:5px solid red;" placeholder="Your username..." name="fname" required></p>
+         <p id="uname1" class="invalid">Username is required</p>
+         <p id="uname2" class="invalid">Username is Wrong</p>
+         <!-- <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p> -->
+         <div style="overflow:auto;">
+            <div style="float:right;">
+              <a type="submit" onclick="next()" id="next">Next</a>
+            </div>
+         </div>
+      </form>
+          
+  
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+         <!-- <span class="step"></span> -->
+         <span class="step"></span>
+      </div>
+<script>
+  function checkData(){
+    alert("s");
+          var first = document.getElementById("pass1");
+          var second = document.getElementById("pass2");
+             if (first.value === second.value) {
+              alert("Both password are match!!")
+               bothmatch.classList.remove("invalid");
+               bothmatch.classList.add("valid");
+               return true;
+             }
+             else{
+              alert("Both password are not match!!")
+               bothmatch.classList.remove("valid");
+               bothmatch.classList.add("invalid");
+             }
+         }
+</script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+           var screen = [];
+              $(document).ready(function() {
+         });
+              function next() {
+                  // alert("datas s ");
+                  var form = $('#regForm');
+           
+                   var formdata = $('#regForm').serializeArray();
+                    // alert(JSON.stringify(formdata));
+                    var data = formdata.reduce(function(a, x) {
+                                     a[x.name] = x.value;
+                                     return a;
+                                 }, {});
+                    screen.push(data);
+                    // alert(JSON.stringify(screen));
+         
+         
+                 // var fdata = JSON.parse(JSON.stringify(auth2));
+                      var url = "/userlogin/forgetpass";
+                         $.ajax({
+                             type: "POST",
+                             url: url,
+                             timeout: 6000,
+                             contentType: 'application/json',
+                             data: JSON.stringify({
+                             formdata: JSON.stringify(screen,),
+                             }),
+                             success:function(data){
+                               var screenData = JSON.stringify(data);
+                               // alert(data.status);
+                               if (data.status == 0) {
+                                 document.getElementById('id').value = data.id;
+                                 document.getElementById('tab').style.display = "block";
+                                 document.getElementById('regForm').style.display ="none";
+                                 document.getElementById('uname1').style.color ="red";
+                                 alert("Your UserName is Verified Successfully")
+                               }
+                               else{
+                                 document.getElementById('uname1').style.display ="block";
+                                 document.getElementById('uname2').style.display ="block";
+                                 document.getElementById('uname2').style.color ="red";
+         
+                               // alert("Your UserName is not correct ")
+                               }
+                             // alert(JSON.stringify(data));
+         
+                     }
+                 });
+             }
+      </script>
+      <script>
+         var myInput = document.getElementById("pass1");
+         var myInput1 = document.getElementById("pass2");
+        
+           var letter = document.getElementById("letter");
+           var capital = document.getElementById("capital");
+           var number = document.getElementById("number");
+           var length = document.getElementById("length");
+           var bothmatch = document.getElementById("bothmatch");
+           myInput.onfocus = function(){
+             document.getElementById("message").style.display = "block";
+           }
+           myInput.onblur = function(){
+             document.getElementById("message").style.display = "none";
+           }
+         
+           myInput.onkeyup = function() {
+               // Validate lowercase letters
+             var lowerCaseLetters = /[a-z]/g;
+             if(myInput.value.match(lowerCaseLetters)) {  
+               letter.classList.remove("invalid");
+               letter.classList.add("valid");
+             } else {
+               letter.classList.remove("valid");
+               letter.classList.add("invalid");
+             }
+             var upperCaseLetters = /[A-Z]/g;
+              if(myInput.value.match(upperCaseLetters)) {  
+               capital.classList.remove("invalid");
+               capital.classList.add("valid");
+             } else {
+               capital.classList.remove("valid");
+               capital.classList.add("invalid");
+             }
+         
+             // Validate numbers
+             var numbers = /[0-9]/g;
+             if(myInput.value.match(numbers)) {  
+               number.classList.remove("invalid");
+               number.classList.add("valid");
+             } else {
+               number.classList.remove("valid");
+               number.classList.add("invalid");
+             }
+
+             
+             // Validate length
+             if(myInput.value.length >= 8) {
+               length.classList.remove("invalid");
+               length.classList.add("valid");
+             } else {
+               length.classList.remove("valid");
+               length.classList.add("invalid");
+             }
+           }
+         
+           function showPass(){
+             var x = document.getElementById('pass1');
+             if (x.type === 'password') {
+               x.type = "text";
+             }
+             else{
+               x.type = "password";
+             }
+           }
+           var Username = document.getElementById("fname");
+           Username.onfocus = function(){
+             document.getElementById("uname1").style.display = "block";
+             document.getElementById("uname1").style.color = "red";
+         
+           }
+           Username.onblur = function(){
+             document.getElementById("uname1").style.display = "none";
+           }
+         
+           Username.onkeyup = function() {
+            if(Username.value.length >= 1) {
+               uname1.classList.remove("invalid");
+               uname1.classList.add("valid");
+             document.getElementById("uname1").style.color = "green";
+             document.getElementById("fname").style.borderLeft = "5px solid green";
+         
+             } else {
+               uname1.classList.remove("valid");
+               uname1.classList.add("invalid");
+             document.getElementById("uname1").style.color = "red";
+         
+         
+             }
+         }
+      </script>
+   </body>
+</html>

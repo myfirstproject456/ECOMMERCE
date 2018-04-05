@@ -1,0 +1,29 @@
+.progress .progress-bar {
+    animation-name: animateBar;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1.0s;
+    /*animation-delay: 1.0s;*/
+    height: 10%;
+    /*margin-top: 0px;*/
+
+  }
+
+  .progress-bar-success{
+    background-color: red;
+    /*animation-delay: 240s;*/
+  }
+
+.pace{
+    margin-top: -19px;
+
+}
+  @keyframes animateBar {
+      0% {transform: scale(00.001);}
+      100% {transform: translateX(0);}
+
+  }
+/*
+#animateBar {
+    backface-visibility:hidden;
+}*/

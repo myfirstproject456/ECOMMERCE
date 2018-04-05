@@ -1,0 +1,31 @@
+
+                <!-- <label for="">City Id : </label> -->
+                <input style=" width: 222px;" type="hidden" class="form-control" id="cid" readonly="readonly" name="cid" class="hidden">
+                       
+                
+                <div class="form-group">
+                <div class="col-md-3"">
+
+                <label >State Name : </label>
+                </div>
+                <div class="col-md-9">
+                <select name="sid" id="sid" class="form-control">
+                    <option value="">Select State</option>
+                    <% data.forEach(function(listState){%>
+                    <option value="<%= listState.stateid%>">
+                    <%= listState.statename%>
+                    </option>
+                    <%});%>
+                </select>
+                </div>
+                </div>
+                &nbsp;
+
+                <div class="form-group">
+                <div class="col-md-3">
+                 <label for="">City Name : </label>
+                 </div>
+                 <div class="col-md-9">
+                 <input type="text" class="form-control" id="cname" name="cname" >
+                 </div>
+                 </div>

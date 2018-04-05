@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Color Admin | Form Plugins</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
+	<!-- <link href="../assets1/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" /> -->
+	<link href="../assets1/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets1/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+</head>
+
+<body>
+ <div class="search-item-container">
+                            <!-- BEGIN item-row -->
+                            <div class="item-row">
+                              <% for(var i = 0; i < 9; i++) {%>
+
+                                <!-- BEGIN item -->
+                               <div class="item item-thumbnail">
+                                <a href="/productdetail" class="item-image">
+                                    <img id="zm" src="./assets1<%= listProduct[i].img2 %>" alt="" />
+                                    <div class="discount">15% OFF</div>
+                                </a>
+                                <div class="item-info">
+                                    <h4 class="item-title">
+                                        <a href="/product"><%= listProduct[i].title%><br />16GB</a> 
+                                        
+                                    </h4>
+                                    <p class="item-desc"><%= listProduct[i].discription%></p>
+                                    <div class="item-price"><%= listProduct[i].price%></div>
+                                    <div class="item-discount-price">$739.00</div>
+                                </div>
+                                </div>
+                                <!-- END item -->
+                                   <%}%>
+                            </div>
+                            <!-- END item-row -->
+                        </div>
+    <div style="text-align:center;">
+    <input type="button" id="first" onclick="firstPage()" value="first" />
+    <input type="button" id="next" onclick="nextPage()" value="next" />
+    <input type="button" id="previous" onclick="previousPage()" value="previous" />
+    <input type="button" id="last" onclick="lastPage()" value="last" />
+
+    <div id="list"></div>
+    </div>
+
+<script>
+    var list = new Array();
+    var pageList = new Array();
+    var currentPage = 1;
+    var numberPerPage;
+    var numberOfPages = 0;
+for(var i =0; i<listProduct.length; i++){
+
+}
+function makeList() {
+    for (x = 0; x < 200; x++)
+        list.push(x);
+
+    numberOfPages = getNumberOfPages();
+}
+    
+function getNumberOfPages() {
+    return Math.ceil(list.length / numberPerPage);
+}
+
+function nextPage() {
+    currentPage += 1;
+    loadList();
+}
+
+function previousPage() {
+    currentPage -= 1;
+    loadList();
+}
+
+function firstPage() {
+    currentPage = 1;
+    loadList();
+}
+
+function lastPage() {
+    currentPage = numberOfPages;
+    loadList();
+}
+
+function loadList() {
+    var begin = ((currentPage - 1) * numberPerPage);
+    var end = begin + numberPerPage;
+
+    pageList = list.slice(begin, end);
+    drawList();
+    check();
+}
+    
+function drawList() {
+    document.getElementById("list").innerHTML = "";
+    for (r = 0; r < pageList.length; r++) {
+        document.getElementById("list").innerHTML += pageList[r] + "<br/>";
+    }
+}
+
+function check() {
+    document.getElementById("next").disabled = currentPage == numberOfPages ? true : false;
+    document.getElementById("previous").disabled = currentPage == 1 ? true : false;
+    document.getElementById("first").disabled = currentPage == 1 ? true : false;
+    document.getElementById("last").disabled = currentPage == numberOfPages ? true : false;
+}
+
+function load() {
+    makeList();
+    loadList();
+}
+    
+window.onload = load;
+</script>
+</body>
+</html>

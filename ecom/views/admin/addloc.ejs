@@ -1,0 +1,29 @@
+		<style>
+		.modal-body div,label{
+		margin-top: 9px;
+		}
+		</style>
+
+	<div class="col-md-12">				
+			<div class="form-group">
+
+				<div class="col-md-3">
+				<label for="" class="control-label">CITYNAME : </label>
+				</div>
+				<div class="col-md-9">	
+				<select  name="cityname" id="" class="form-control">
+					<option >Select City</option>
+					<% for(var i=0; i < listCity.length; i++) {%>
+					<option value="<%= listCity[i].cityid%>"><%= listCity[i].cityname %></option>
+					 <% } %>
+				</select>
+				</div>
+
+				<div class=col-md-3>	
+				<label for="" class="control-label">LOCALITYNAME : </label>
+				</div>	
+				<div class="col-md-9">
+				<input type="text" class="form-control"  id="lname" name="locname">
+				</div>
+			</div>	
+	</div>		

@@ -1,0 +1,18 @@
+
+				<label for="">Category Id : </label><input style="width: 222px;" type="text" class="form-control" id="cid" readonly="readonly" name="cid">
+				<br><br>
+				<label for="">Category Name : </label><input type="text" class="form-control" id="cname"  name="cname">
+				<br><br>
+				<label for="">Parent-Category Name : </label>
+				
+				<select style="width: 232px;" name="pid" id="pid" class="form-control" >
+				<option value="0">Select ParentCategory</option>
+				<% for(var i=0; i < data.length; i++){%>
+				<option value="<%=data[i].parentcategoryid%>">
+					<%=data[i].parentcatname%>
+				</option>
+				<% } %>
+			</select>
+
+			
+			

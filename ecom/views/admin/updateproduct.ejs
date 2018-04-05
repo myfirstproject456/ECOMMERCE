@@ -1,0 +1,71 @@
+		<style>
+		.modal-body div,label{
+		margin-top: 9px;
+		}
+		</style>
+	 <div class="col-md-12">
+                <div class="form-group">	
+				<div class="col-md-12" style=" margin-top: -12px;">
+				<input type="text" class="form-control hidden" name="pid" id="pid" value="">
+				</div>
+				
+				<label for="" class="col-md-3 control-label">Title : </label>
+				<div class="col-md-9">
+				<input style=" margin-top:-12px" type="text" class="form-control" name="tit" id="tit" required>
+				</div>
+				
+				<label for="" class="col-md-3 control-label">Tags/Keywords : </label>
+				<div class="col-md-9">
+				<input type="text" class="form-control" id="tags" name="tags">
+				</div>
+				
+				<label for="" class="col-md-3 control-label">Discription : </label>
+				<div class="col-md-9">
+				<textarea type="text" class="form-control" name="dis" id="dis" cols="10" rows="5">
+				</textarea>
+				</div>
+
+				<label class="col-md-3 control-label">Images </label>
+				<div class="col-md-9">
+					<input type="file" name="imgUploader" id="image" accept="image/*,.pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple />
+					<p><small>(Maximum 5 images)</small></p>
+				</div>
+				
+				<label for="" class="col-md-3 control-label">CategoryId : </label>
+				<div class="col-md-9">
+				<select type="text" class="form-control" id="c1id" name="c1id" readonly>
+				<option value="" >Select Category</option>
+						<% for(var i = 0; i < listCategory.length; i++) {%>
+						<option value="<%= listCategory[i].categoryid %>"><%= listCategory[i].categoryname%></option>
+						<% } %>
+					</select>
+				</div>
+				
+				<label for="" class="col-md-3 control-label">SubCategoryId : </label>
+				<div class="col-md-9">
+				<select name="scid" id="scid" class="form-control" readonly>
+					<option value="" >Select Category</option>
+						<% for(var i = 0; i < listCategory.length; i++) {%>
+						<option value="<%= listCategory[i].categoryid %>"><%= listCategory[i].categoryname%></option>
+						<% } %>
+                </select>
+                </div>
+
+				<label for="" class="col-md-3 control-label">Price:</label>
+				<div class="col-md-9">
+				<input type="number" id="price" name="price" class="form-control">
+				</div>
+				
+				<label for="" class="col-md-3 control-label">Status : </label>
+				<div class="col-md-9">
+				<select name="status" id="status" class="form-control">
+					<option value="" >Select Status</option>
+						<% for(var i = 0; i < data.length; i++) {%>
+						<option value="<%= data[i].status %>">
+						<%= data[i].status%></option>
+						<% } %>
+				</select>
+				</div>
+			</div> 
+              </div> 	
+				

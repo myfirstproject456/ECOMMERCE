@@ -1,0 +1,13 @@
+
+             <label for="">State Name : </label>    
+                 <select type="text" style="width: 213px;" name="statename" id="" class="form-control">
+                        <option value="">Select State</option>
+                        <% for(var i=0; i < listState.length; i++) {%>
+                        <option value="<%= listState[i].stateid %>"><%= listState[i].statename %></option>
+                        <% } %>
+                       
+                </select>
+                <p id="error" style="color: red;"></p>
+                <br>   
+                <label for="">City Name : </label>
+                <input style="width: 215px;" type="text" class="form-control"  id="cname" name="cityname">
